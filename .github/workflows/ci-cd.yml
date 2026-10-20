@@ -42,7 +42,7 @@ jobs:
       
     - name: jalankan docker-compose
       run: |
-        docker-compose up -d
+        docker compose up -d
         sleep 10
-        docker-compose ps
-        docker-compose down -v
+        docker compose ps
+        docker compose down -v
