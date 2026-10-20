@@ -1,0 +1,48 @@
+name: Devops Mini Project CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+    
+    - name: set up python
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11
+    
+    - name: install dependensi
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: jalankan unit test
+      run: |
+        python -m unittest discover
+
+  build-docker:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+
+    - name: test build
+      run: |
+        docker build -t devops-mini-project .
+      
+    - name: jalankan docker-compose
+      run: |
+        docker-compose up -d
+        sleep 10
+        docker-compose ps
+        docker-compose down -v
