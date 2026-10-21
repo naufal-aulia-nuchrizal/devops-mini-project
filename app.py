@@ -23,4 +23,4 @@ def hello():
     return f"<h1> Halo! situs ini telah dikunjungi {count} kali. </h1>"
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0', port=5000)
