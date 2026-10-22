@@ -36,7 +36,7 @@ jobs:
     - name: checkout code
       uses: actions/checkout@v4
 
-    if github:ref == 'refs/heads/main' && github.event_name == 'push':
+    if github.ref == 'refs/heads/main' && github.event_name == 'push':
       
       steps:
 
